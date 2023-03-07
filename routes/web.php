@@ -18,9 +18,8 @@ Route::get('/', function () {
 Route::get('/admin', [UserController::class, 'index'])->name('admin');
 
 // エンドユーザー
-Route::get('/user', function () {
-    return Inertia::render('EndUser');
-});
+Route::get('/user', [UserController::class, 'index']);
+
 
 Route::middleware([
     'auth:sanctum',
