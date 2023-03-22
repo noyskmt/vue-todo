@@ -9,5 +9,5 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $table = "todo_tables";
+    protected $table = "todos";
 }

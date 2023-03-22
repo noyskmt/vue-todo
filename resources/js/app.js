@@ -1,6 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
 import '../scss/app.scss';
+import 'bootstrap/dist/css/bootstrap.css'
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
@@ -23,7 +24,7 @@ createInertiaApp({
 
 InertiaProgress.init({ color: '#4B5563' });
 
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-Vue.use(BootstrapVue)
+// import BootstrapVue from 'bootstrap-vue'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// Vue.use(BootstrapVue)

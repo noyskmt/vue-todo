@@ -3,32 +3,38 @@
 import { Link } from "@inertiajs/inertia-vue3";
 export default {
     props:{
-        create_todos: {
+        todos: {
             type: Array,
         }
     },
     
+    data() {
+      return {
+        name: "",
+      }
+    }
+    
 }
+
+
 </script>
 <template>
     <div class="container" style="margin-top:50px;">
     <h1>Todoリスト追加</h1>
 
-    <form>
+    <form v-bind:action="Todo/Index" method="post" name="name">
       <div class="form-group">
         <label >やることを追加してください</label>
-        <td v-for="create_todo in create_todos">
-         <input type="text" style="max-width:1000px;">
-        </td>
+        <input v-model="name" class="form-control" style="max-width:1000px;">
       </div>
-      <button @click="remove" type="submit" class="btn btn-primary">追加する</button>
+      <button v-on:click="addToDo" class="btn btn-primary">追加する</button>
     </form>
 
     <h1 style="margin-top:50px;">Todoリスト</h1>
     <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
       <tbody>
-        <tr>
-          <td>フォームで入力した値を受け取る</td>
+        <tr v-for="todo in todos">
+          <td>{{ todo.name }}</td>
           <td>
             <form action="{{route('todos.edit', todo) }}" method="get">
               <button type="submit" class="btn btn-primary">編集</button>

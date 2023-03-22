@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+// use App\Models\Todo;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,8 +19,14 @@ Route::get('/', function () {
 // 管理者
 Route::get('/admin', [UserController::class, 'index'])->name('admin');
 
-// エンドユーザー
-Route::get('/user', [UserController::class, 'index']);
+
+Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
+Route::post('/store', [TodoController::class, 'store'])->name('todos.store');
+Route::get('edit/{id}', [TodoController::class, 'edit'])->name('todos.edit');
+
+// Route::get('/todos', function (){
+//     return Inertia::render('Todos/Index',['todos' => Todo::all()]);
+// });
 
 
 Route::middleware([

@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Http\Controllers\TodoController;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Datetime;
 
 
 class TodoTableSeeder extends Seeder
@@ -16,11 +18,15 @@ class TodoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('todo_tables')->insert([
-            'create_todo' => 'aaa',
+        DB::table('todos')->insert([
+            'name' => Todo::all(),
+            'created_at' => new Datetime(),
+            'updated_at' => new Datetime()
         ]);
-
-         
     }
+    //     DB::table('todos')->insert([
+    //         'name' => $todos,
+    //     ]);
+
 }
 
