@@ -1,27 +1,34 @@
 
 <script>
-import { Link } from "@inertiajs/inertia-vue3";
 export default {
-    props:{
-        todos: {
-            type: Array,
-        }
-    },
-    
-    data() {
-      return {
-        name: "",
+  props:{
+      todos: {
+          type: Array,
       }
-    }
+  },
     
+  data(){
+    return{
+      count: 0
+    }
+  },
+
+  methods:{
+    countUp(){
+      this.count = this.count + 1
+    }
+  }
 }
-
-
 </script>
-<template>
-    <div class="container" style="margin-top:50px;">
-    <h1>Todoリスト追加</h1>
 
+<template>
+  <div class="count-up">
+    <li style="list-style:none;">現在{{ count }}回クリックされています</li>
+    <button v-on:click="countUp" class="btn btn-secondary btn-sm">カウントアップ</button>
+  </div>
+  
+  <div class="container" style="margin-top:50px;">
+    <h1>Todoリスト追加</h1>
     <form v-bind:action="Todo/Index" method="post" name="name">
       <div class="form-group">
         <label >やることを追加してください</label>
@@ -48,5 +55,5 @@ export default {
         </tr>
       </tbody>
     </table>
-</div>
+  </div>
 </template>

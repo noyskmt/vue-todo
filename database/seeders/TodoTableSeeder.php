@@ -19,14 +19,10 @@ class TodoTableSeeder extends Seeder
     public function run()
     {
         DB::table('todos')->insert([
-            'name' => Todo::all(),
+            'name' => "",
             'created_at' => new Datetime(),
             'updated_at' => new Datetime()
         ]);
     }
-    //     DB::table('todos')->insert([
-    //         'name' => $todos,
-    //     ]);
-
 }
 
