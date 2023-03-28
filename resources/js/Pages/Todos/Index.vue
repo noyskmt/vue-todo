@@ -1,24 +1,53 @@
 
 <script>
 export default {
-  props:{
-      todos: {
-          type: Array,
-      }
+  props: {
+    todos:[
+      Array
+    ]
   },
-    
+
+  // カウントアップ機能
   data(){
     return{
       count: 0
     }
   },
-
   methods:{
     countUp(){
       this.count = this.count + 1
     }
-  }
+  },
 }
+
+// axios.get('/todos')
+//   .then(function (response) {
+//  // handle success(axiosの処理が成功した場合に処理させたいことを記述)
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//  // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
+//     console.log(error);
+//   })
+//   .finally(function () {
+//  // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
+//   });
+  
+// const { createApp, ref, onMounted } = Vue;
+// createApp({
+//   setup() {
+//     const message = ref('Hello Axios');
+//     onMounted(() => {
+//       axios
+//       .get('localhost/todos')
+//       .then((response) => console.log(response))
+//       .catch((error) => console.log(error));
+//     });
+//     return {
+//       message,
+//     };
+//   },
+// }).mount('#app');
 </script>
 
 <template>
