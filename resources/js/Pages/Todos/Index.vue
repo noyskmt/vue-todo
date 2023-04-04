@@ -1,55 +1,3 @@
-
-<script>
-export default {
-  props: {
-    todos:[
-      Array
-    ]
-  },
-
-  // カウントアップ機能
-  data(){
-    return{
-      count: 0
-    }
-  },
-  methods:{
-    countUp(){
-      this.count = this.count + 1
-    }
-  },
-}
-
-// axios.get('/todos')
-//   .then(function (response) {
-//  // handle success(axiosの処理が成功した場合に処理させたいことを記述)
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//  // handle error(axiosの処理にエラーが発生した場合に処理させたいことを記述)
-//     console.log(error);
-//   })
-//   .finally(function () {
-//  // always executed(axiosの処理結果によらずいつも実行させたい処理を記述)
-//   });
-  
-// const { createApp, ref, onMounted } = Vue;
-// createApp({
-//   setup() {
-//     const message = ref('Hello Axios');
-//     onMounted(() => {
-//       axios
-//       .get('localhost/todos')
-//       .then((response) => console.log(response))
-//       .catch((error) => console.log(error));
-//     });
-//     return {
-//       message,
-//     };
-//   },
-// }).mount('#app');
-</script>
-
 <template>
   <div class="count-up">
     <li style="list-style:none;">現在{{ count }}回クリックされています</li>
@@ -58,13 +6,11 @@ export default {
   
   <div class="container" style="margin-top:50px;">
     <h1>Todoリスト追加</h1>
-    <form v-bind:action="Todo/Index" method="post" name="name">
-      <div class="form-group">
+    <div class="form-group">
         <label >やることを追加してください</label>
-        <input v-model="name" class="form-control" style="max-width:1000px;">
+        <input type="text"  :name="todo" v-model="todo" class="form-control" style="max-width:1000px;">
       </div>
-      <button v-on:click="addToDo" class="btn btn-primary">追加する</button>
-    </form>
+    <button v-on:click="addTodo()" class="btn btn-primary">追加する</button>
 
     <h1 style="margin-top:50px;">Todoリスト</h1>
     <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
@@ -86,3 +32,47 @@ export default {
     </table>
   </div>
 </template>
+
+<script>
+  import axios from 'axios';
+
+  export default {
+    props: {
+      todos:[
+        Array
+      ]
+    },
+
+    data() {
+      return {
+        count: 0,
+        name: ""
+      }
+    },
+
+    methods:{
+      countUp() {
+        this.count = this.count + 1
+      },  
+
+      addTodo:function() {
+        // console.log('store');
+        axios.post('/todos/store', {
+          name : this.todo
+        }).then((response) => {
+          console.log(response);
+        }).catch((error) => {
+          console.log(error);
+        });
+      },
+
+      mounted() {
+        axios.get('/todos')
+        .then((response) => (this.todo = response.data));
+        axios.post('/todos/store', data,)
+      },
+    }
+
+  }
+  
+</script>

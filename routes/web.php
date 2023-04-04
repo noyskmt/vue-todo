@@ -20,12 +20,9 @@ Route::get('/admin', [UserController::class, 'index'])->name('admin');
 
 
 Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
-// Route::post('/store', [TodoController::class, 'store'])->name('todos.store');
+Route::post('/todos/store', [TodoController::class, 'store'])->name('todos.store');
 // Route::get('edit/{id}', [TodoController::class, 'edit'])->name('todos.edit');
 
-// Route::get('/todos', function (){
-//     return Inertia::render('Todos/Index',['todos' => Todo::all()]);
-// });
 
 
 Route::middleware([
