@@ -18,7 +18,6 @@ Route::get('/', function () {
 // 管理者
 Route::get('/admin', [UserController::class, 'index'])->name('admin');
 
-
 Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
 Route::post('/todos/store', [TodoController::class, 'store'])->name('todos.store');
 // Route::get('edit/{id}', [TodoController::class, 'edit'])->name('todos.edit');

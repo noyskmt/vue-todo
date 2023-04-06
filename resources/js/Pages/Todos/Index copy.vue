@@ -34,6 +34,7 @@
 </template>
 
 <script>
+  // import axios from 'axios';
   import { Inertia } from '@inertiajs/inertia';
 
   export default {
@@ -59,7 +60,21 @@
       addTodo:function() {
         Inertia.post('/todos/store', {
           name : this.newTodo
-        })
+        });
+        
+        // .then((response) => {
+        //   console.log(response);
+        // })
+        // .catch((error) => {
+        //   console.log(error);
+        // });
+      },
+
+      mounted() {
+        this.newTodo = todos
+        // axios.get('/todos')
+        // .then((response) => (this.todo = response.data));
+        // axios.post('/todos/store', data,)
       },
     }
   }
