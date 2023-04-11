@@ -12,8 +12,7 @@ class TodoController extends Controller
   public function index()
   {
     $id = Auth::id();
-    Todo::where('name',$id)->get();
-
+    // Todo::where('name',$id)->get();
     return $this->redirect_top();
   }
 
@@ -27,12 +26,19 @@ class TodoController extends Controller
     return $this->redirect_top();
   }
 
-  public function edit($id) {
+  // public function edit($id) {
+  //   $todo = Todo::find($id);
+  //   return Inertia::render('Todos/Edit', [
+  //     'todo' => $todo,
+  //   ]);
+  //   return view('todos.edit')->with('todo',$todo);
+  // }
+
+  public function destroy($id) {
+    // Todo::find($id)->delete();
     $todo = Todo::find($id);
-    return Inertia::render('Todos/Edit', [
-      'todo' => $todo,
-    ]);
-    return view('todos.edit')->with('todo',$todo);
+    $todo->delete();
+    return $this->redirect_top();
   }
 
   public function redirect_top() {

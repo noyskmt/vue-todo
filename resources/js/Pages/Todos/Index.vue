@@ -18,14 +18,10 @@
         <tr v-for="todo in todos">
           <td>{{ todo.name }}</td>
           <td>
-            <form action="{{route('todos.edit', todo) }}" method="get">
-              <button type="submit" class="btn btn-primary">編集</button>
-            </form>
+            <button type="submit" v-on:click="deodo" class="btn btn-primary">編集</button>
           </td>
           <td>
-            <form action="{{route('todos.destroy', todo->id)}}" method="post">
-              <button type="submit" class="btn btn-danger">削除</button>
-            </form>
+            <button type="submit" v-on:click="delTodo(todo.id)"  class="btn btn-danger">削除</button>
           </td> 
         </tr>
       </tbody>
@@ -46,8 +42,7 @@
     data() {
       return {
         count: 0,
-        name: ""
-
+        name: "",
       }
     },
 
@@ -61,6 +56,23 @@
           name : this.newTodo
         })
       },
+
+      delTodo:function(id) {
+        Inertia.delete('/todos/destroy/{id}')
+        console.log(id)
+      },
+
+      // delTodo:function() {
+      //   todo.id => {console.log(id)}
+      // }
+
+      // delTodo:function(todo) {   //v-onをdelTodo(todo)にする DBからは削除されない方法
+      //   // todos配列の todo から key を取得 
+      //   var index = this.todos.indexOf(todo);
+      //   // key番目から１つ削除
+      //   this.todos.splice(index, 1);
+      // }
+      
     }
   }
   
