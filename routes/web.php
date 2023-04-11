@@ -21,7 +21,7 @@ Route::get('/admin', [UserController::class, 'index'])->name('admin');
 Route::get('/todos', [TodoController::class, 'index']);
 Route::post('/todos/store', [TodoController::class, 'store']);
 // Route::get('edit/{id}', [TodoController::class, 'edit'])->name('todos.edit');
-Route::delete('/todos/destroy/{id}', [TodoController::class, 'destroy']);
+Route::post('/todos/destroy/{id}', [TodoController::class, 'destroy']);
 
 
 

@@ -55,24 +55,13 @@
         Inertia.post('/todos/store', {
           name : this.newTodo
         })
+        Inertia.get('/todos')
       },
 
       delTodo:function(id) {
-        Inertia.delete('/todos/destroy/{id}')
-        console.log(id)
-      },
-
-      // delTodo:function() {
-      //   todo.id => {console.log(id)}
-      // }
-
-      // delTodo:function(todo) {   //v-onをdelTodo(todo)にする DBからは削除されない方法
-      //   // todos配列の todo から key を取得 
-      //   var index = this.todos.indexOf(todo);
-      //   // key番目から１つ削除
-      //   this.todos.splice(index, 1);
-      // }
-      
+        Inertia.post(`/todos/destroy/${id}`)
+        Inertia.get('/todos')
+      }
     }
   }
   
