@@ -18,7 +18,7 @@
         <tr v-for="todo in todos">
           <td>{{ todo.name }}</td>
           <td>
-            <button type="submit" v-on:click="deodo" class="btn btn-primary">編集</button>
+            <button type="submit" v-on:click="edTodo(todo.name)" class="btn btn-primary">編集</button>
           </td>
           <td>
             <button type="submit" v-on:click="delTodo(todo.id)"  class="btn btn-danger">削除</button>
@@ -56,6 +56,24 @@
           name : this.newTodo
         })
         Inertia.get('/todos')
+      },
+
+      edTodo:function(name) {
+         this.todos[name].valueChecker = true;
+        // Inertia.post(`/todos/edit/${id}`)
+        // Inertia.get('/todos')
+      },
+
+      onEdit:function(OBJ) {
+        this.name = OBJ
+      },
+
+      offEdit:function(OBJ) {
+        this.name = ""
+        elem = document.getElementById(OBJ)
+        if(elem.value =="")  {
+          this[OBJ] = this.name;
+        }
       },
 
       delTodo:function(id) {

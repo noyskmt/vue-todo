@@ -22,6 +22,14 @@ class TodoController extends Controller
     $todo->save();
   }
 
+  // public function edit($id) {
+  //   Todo::find($id);
+  // }
+
+  // public function update($id, Request $request) {
+  //   Todo::find($id)->update($request->all());
+  // }
+
   public function destroy($id) {
     Todo::find($id)->delete();
   }
@@ -29,7 +37,6 @@ class TodoController extends Controller
   public function redirect_top() {
     return Inertia::render('Todos/Index',['todos' => Todo::latest()->get()]);
   }
-
 }
 
 
