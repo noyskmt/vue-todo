@@ -15,10 +15,12 @@
     <h1 style="margin-top:50px;">Todoリスト</h1>
     <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
       <tbody>
-        <tr v-for="todo in todos">
-          <td>{{ todo.name }}</td>
+        <tr v-for="todo in todos" :key="todo">
+          <td v-if="!editFlag">{{ todo.name }}</td>
+          <td v-else><input type="text" class="form-control" v-bind:value="todo.name"></td>
           <td>
-            <button type="submit" v-on:click="edTodo(todo.name)" class="btn btn-primary">編集</button>
+            <button v-if="!editFlag" type="submit" v-on:click="edTodo(todo.name)" class="btn btn-primary">編集</button>
+            <button v-else type="submit" v-on:click="edTodo(todo.name)" class="btn btn-primary">完了</button>
           </td>
           <td>
             <button type="submit" v-on:click="delTodo(todo.id)"  class="btn btn-danger">削除</button>
@@ -31,6 +33,7 @@
 
 <script>
   import { Inertia } from '@inertiajs/inertia';
+  // import { onMounted } from 'vue';
 
   export default {
     props: {
@@ -59,27 +62,23 @@
       },
 
       edTodo:function(name) {
-         this.todos[name].valueChecker = true;
-        // Inertia.post(`/todos/edit/${id}`)
-        // Inertia.get('/todos')
+        this.todos.editFlag = true;
+        this.todos[index].name = name;
       },
 
-      onEdit:function(OBJ) {
-        this.name = OBJ
-      },
-
-      offEdit:function(OBJ) {
-        this.name = ""
-        elem = document.getElementById(OBJ)
-        if(elem.value =="")  {
-          this[OBJ] = this.name;
-        }
+      clickComplete() {
+        Inertia.post(`/todos/edit/${id}`)
+        Inertia.get('/todos')
       },
 
       delTodo:function(id) {
         Inertia.post(`/todos/destroy/${id}`)
         Inertia.get('/todos')
       }
+    },
+
+    mounted() {
+      console.log(this.todos);
     }
   }
   

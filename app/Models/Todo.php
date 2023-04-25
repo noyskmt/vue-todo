@@ -10,4 +10,12 @@ class Todo extends Model
     use HasFactory;
 
     protected $table = "todos";
+
+    protected $appends = ['editFlag']; 
+
+    public function getEditFlagAttribute()
+    {
+        return false;
+    }
 }
+
