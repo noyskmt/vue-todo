@@ -17,5 +17,10 @@ class Todo extends Model
     {
         return false;
     }
+
+    public function Todo()
+    {
+        return $this->belongsTo(Todo::class,'name');
+    }
 }
 
