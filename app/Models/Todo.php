@@ -13,14 +13,11 @@ class Todo extends Model
 
     protected $appends = ['editFlag']; 
 
+    protected $guarded = ['id']; 
+
     public function getEditFlagAttribute()
     {
         return false;
-    }
-
-    public function Todo()
-    {
-        return $this->belongsTo(Todo::class,'name');
     }
 }
 

@@ -20,7 +20,6 @@ Route::get('/admin', [UserController::class, 'index'])->name('admin');
 
 Route::get('/todos', [TodoController::class, 'index']);
 Route::post('/todos/store', [TodoController::class, 'store']);
-// Route::post('/todos/edit/{id}', [TodoController::class, 'edit']);
 Route::post('/todos/update/{id}', [TodoController::class, 'update']);
 Route::post('/todos/destroy/{id}', [TodoController::class, 'destroy']);
 
